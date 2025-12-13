@@ -1,0 +1,242 @@
+html,
+body {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.navbar {
+    background-color: #0b2336;
+    z-index: 1;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+}
+
+@media print {
+    .nav {
+        visibility: hidden;
+        display: none;
+    }
+    .navbar {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: #0000001a;
+    border: solid rgba(0, 0, 0, 0.15);
+    border-width: 1px 0;
+    box-shadow: inset 0 0.5em 1.5em #0000001a, inset 0 0.125em 0.5em #00000026;
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.main-container {
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid rgb(223.125, 223.125, 223.125);
+    background: white;
+}
+
+.container-wrapper {
+    margin-top: 90px;
+}
+
+.btn-bd-primary {
+    --bd-violet-bg: #712cf9;
+    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bd-violet-bg);
+    --bs-btn-border-color: var(--bd-violet-bg);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #6528e0;
+    --bs-btn-hover-border-color: #6528e0;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #5a23c8;
+    --bs-btn-active-border-color: #5a23c8;
+}
+
+.bd-mode-toggle {
+    z-index: 1500;
+}
+
+.bd-mode-toggle .bi {
+    width: 1em;
+    height: 1em;
+}
+
+.bd-mode-toggle .dropdown-menu .active .bi {
+    display: block !important;
+}
+
+.hero-section {
+    background-image: url("../images/cyber-security-3194286.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken;
+    height: 412px;
+    padding: 0;
+}
+
+.form {
+    max-width: 330px;
+    padding: 1rem;
+}
+
+.form .form-floating:focus-within {
+    z-index: 1000;
+}
+
+.form input {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.floating-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    width: 300px;
+}
+
+.floating-form h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.floating-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.floating-form button .submit {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.floating-form button:hover .submit {
+    background: #0056b3;
+}
+
+.floating-form button:hover .cancel {
+    background: rebeccapurple;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    background-color: #0b2338;
+    color: white;
+    padding: 1rem 3rem;
+    flex: 0 0 auto;
+    font-family: "Roboto-Thin", sans-serif;
+}
+
+.footer .footer-brand {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 0.25rem 0;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.footer .footer-link {
+    color: #87deff;
+}
+
+.footer .footer-link:hover {
+    color: rgb(107, 173, 213.5);
+}
+
+@media print {
+    .footer {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+.resources {
+    width: fit-content;
+}
+
+.main-dropdown .dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-tabs {
+    border-bottom: none;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.dropdown-menu {
+    background-color: lightcyan;
+    border-color: grey;
+}
+
+.dropdown-item:hover {
+    color: blueviolet;
+    text-decoration: underline;
+}

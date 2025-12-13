@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Album example · Bootstrap v5.3</title>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <meta name="theme-color" content="#712cf9" />
+</head>
+
+<body>
+
+    <header class="col px-0" style="flex: 0 0 auto;">
+        <nav class='navbar navbar-expand-lg navbar-dark' style="left: 0; top: 0;">
+            <a class='navbar-brand pb-0' href='/'
+                style="display: flex; align-items: center; margin: 0.765rem 0 0.765rem 3rem">
+                <div class="h2">SecShare</div>
+            </a>
+            <div class="ms-auto row gap-4" style="margin-right: 80px;">
+                <button id="my-posts-button" type="button" class="btn btn-primary col" style="width: 6rem;">
+                    <span>My Posts</span>
+                </button>
+                <button id="logout-button" type="button" class="btn btn-warning col" style="width: 6rem;">
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container" style="height: 69vh;">
+
+                <div class="row mb-4">
+                    <div class="col"></div>
+                    <h2 class="col text-center">My Posts</h2>
+                    <div class="col text-end">
+                        <button id="post-button" class="btn btn-primary" type="button" style="width: 6rem;">Add
+                            Post</button>
+                    </div>
+                </div>
+
+                <!-- Add Post Form -->
+                <div id="post-form-container">
+
+                </div>
+
+                <div id="user-posts">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div>
+            <div class="row row-footer">
+                <div class="col-1 col-sm-2 col-md-2">
+                    <div class="my-auto">
+                        <a class="footer-brand" href="/">
+                            <div class="h2">SecShare</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <small class="px-3">&copy;&nbsp;2025, SecShare
+                </small>
+            </div>
+
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./assets/js/user_posts.js"></script>
+    <script type="text/javascript" src="./assets/js/color-modes.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+        async></script>
+</body>
+
+</html>
