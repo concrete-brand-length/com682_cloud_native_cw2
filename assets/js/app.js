@@ -1,3 +1,9 @@
+// Azure Endpoints
+const LOGIN_URL =
+    "https://com682-assignment-web-app.azurewebsites.net/.auth/login/github";
+const LOGOUT_URL =
+    "https://com682-assignment-web-app.azurewebsites.net/.auth/logout";
+
 const $forms_container = $("#forms-container");
 const $navbar_buttons_container = $("#navbar-buttons-container");
 const $hero_register_form_button = $("#hero-register-button");
@@ -89,22 +95,20 @@ let dummyData = [
     },
 ];
 
-// Azure Endpoints
-const AUTH_URL = "";
-const REG_URL = "";
-const EVENT_GRID = "";
-const POSTS_SERVICE = "";
-const BLOB_STORAGE = "";
-
 $(function () {
     loadPosts();
+
+    $(".login").on("click", (window.location.href = LOGIN_URL));
+
+    $("#logout").on("click", (window.location.href = LOGOUT_URL));
+
+    $("#my-posts").on("click", (window.location.href = "user_posts.html"));
 });
 
 // Homepage Posts
 function loadPosts() {
     window.location.hash = `/`;
-    setNonAuthButtons();
-    setHeroRegisterFormButton();
+    checkAuth();
     const $homepage_posts = $("#homepage-posts");
 
     // Temporary dummy data processing for testing - To be removed
@@ -118,127 +122,6 @@ function loadPosts() {
             ""
         )}</div>`
     );
-}
-
-// My Posts
-function navigateToUserPosts() {
-    window.location.href = "user_posts.html";
-}
-
-// Login
-function loginClick() {
-    window.location.hash = `/login`;
-    $("body").append(`<div id="overlay"></div>`);
-    $forms_container.html(
-        `
-            <div class="floating-form py-4 m-auto bg-body-tertiary border-rounded form">
-                <div class="text-center mb-4">
-                    <h2>Login</h2>
-                </div>
-          
-                <form>
-                    <div class="form-group form-floating">
-                        <input type="text" class="form-control" formControlName="login-username" id="login-username" placeholder="login-username" />
-                        <label for="login-username">Username</label>
-                    </div>
-            
-                    <div class="form-group form-floating">
-                        <input type="password" class="form-control" formControlName="login-password" id="login-password" placeholder="login-Password" />
-                        <label for="login-password">Password</label>
-                    </div>
-            
-                    <button onclick="login()" class="save btn btn-primary w-100 py-2 mt-3" type="button">Login</button>
-                    <button onclick="resetForms()" class="btn btn-danger w-100 py-2 mt-3" type="button">Cancel</button>
-                </form>
-            </div>
-        `
-    );
-}
-
-function login() {
-    const loginData = new FormData();
-    loginData.append("username", $("#login-username").val());
-    loginData.append("password", $("#login-password").val());
-
-    // Temporary logs for testing - To be removed.
-    console.log(loginData.get("username"));
-    console.log(loginData.get("password"));
-
-    resetForms();
-
-    setLoggedInUserButtons();
-    $hero_register_form_button.empty();
-}
-
-function resetForms() {
-    window.location.hash = `/`;
-    $("#overlay").remove();
-    $forms_container.empty();
-}
-
-// Logout
-function logout() {
-    window.location.hash = `/`;
-    // logoutRequest();
-
-    setNonAuthButtons();
-    setHeroRegisterFormButton();
-}
-
-// Registration
-function registerClick() {
-    window.location.hash = `/register`;
-    $("body").append(`<div id="overlay"></div>`);
-    $forms_container.html(
-        `
-        <div class="floating-form py-4 m-auto bg-body-tertiary border-rounded form">
-            <div class="text-center mb-4">
-                <h2>Register</h2>
-            </div>
-
-            <form>
-                <div class="form-floating py-1">
-                    <input type="text" class="form-control" formControlName="register-name" id="register-name" placeholder="register-name" />
-                    <label for="register-name">Name</label>
-                </div>
-            
-                <div class="form-group form-floating">
-                    <input type="text" class="form-control" formControlName="register-username" id="register-username" placeholder="register-username" />
-                    <label for="register-username">Username</label>
-                </div>
-            
-                <div class="form-group form-floating">
-                    <input type="password" class="form-control" formControlName="register-password" id="register-password" placeholder="register-password" />
-                    <label for="register-password">Password</label>
-                </div>
-            
-                <div class="form-group form-floating">
-                    <input type="email" class="form-control" formControlName="register-email" id="register-email" placeholder="register-email" />
-                    <label for="register-email">Email address</label>
-                </div>
-            
-                <button onclick="register()" class="btn btn-primary w-100 py-2 mt-3" type="button">Register</button>
-                <button onclick="resetForms()" class="btn btn-danger w-100 py-2 mt-3" type="button">Cancel</button>
-            </form>
-        </div>
-        `
-    );
-}
-
-function register() {
-    const registrationData = new FormData();
-    registrationData.append("name", $("#register-name").val());
-    registrationData.append("username", $("#register-username").val());
-    registrationData.append("password", $("#register-password").val());
-    registrationData.append("email", $("#register-email").val());
-
-    // Temporary logs for testing - To be removed.
-    console.log(registrationData.get("name"));
-    console.log(registrationData.get("username"));
-    console.log(registrationData.get("password"));
-    console.log(registrationData.get("email"));
-
-    resetForms();
 }
 
 // Temporary for testing - To be modified to using Azure Cognitive Search
@@ -364,8 +247,8 @@ function setLoggedInUserButtons() {
     $navbar_buttons_container.empty();
     $navbar_buttons_container.html(
         `
-            <button onclick="navigateToUserPosts()" type="button" class="btn btn-primary col" style="width: 6rem;">My Posts</button>
-            <button onclick="logout()" type="button" class="btn btn-warning col" style="width: 6rem;">Logout</button>
+            <button id="my-posts" type="button" class="btn btn-primary col" style="width: 6rem;">My Posts</button>
+            <button id="logout" type="button" class="btn btn-warning col" style="width: 6rem;">Logout</button>
         `
     );
 }
@@ -374,8 +257,7 @@ function setNonAuthButtons() {
     $navbar_buttons_container.empty();
     $navbar_buttons_container.html(
         `
-            <button onclick="loginClick()" type="button" class="btn btn-warning col" style="width: 6rem;">Login</button>
-            <button onclick="registerClick()" type="button" class="btn btn-primary bt col" style="width: 6rem;">Register</button>
+            <button type="button" class="login btn btn-warning col" style="width: 6rem;">Login</button>
         `
     );
 }
@@ -384,60 +266,35 @@ function setHeroRegisterFormButton() {
     $hero_register_form_button.empty();
     $hero_register_form_button.html(
         `
-            <button class="btn btn-primary my-2" onclick="registerClick()">Register to share with the community</button>
+            <button type="button" class="login btn btn-primary my-2">Login to share with the community</button>
         `
     );
 }
 
-function registerRequest(userData) {
+function checkAuth() {
     $.ajax({
-        url: REG_URL,
-        data: userData,
+        url: "https://com682-assignment-web-app.azurewebsites.net/.auth/me",
         cache: false,
-        enctype: "form-data",
         contentType: false,
         processData: false,
-        type: "POST",
-        success: (response) => console.log("Registration response: ", response),
+        type: "GET",
+        success: (response) => {
+            if (response) {
+                $hero_register_form_button.empty();
+                setLoggedInUserButtons();
+            } else {
+                setHeroRegisterFormButton();
+                setNonAuthButtons();
+            }
+        },
         error: (xhr, status, err) => {
             console.error(
-                "Registration failed:",
+                "Failed to fetch auth state:",
                 status,
                 err,
                 xhr?.responseText
             );
-            alert("Registration failed - see console for details");
-        },
-    });
-}
-
-function loginRequest() {
-    $.ajax({
-        url: `${AUTH_URL}/login`,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: "GET",
-        success: (response) => console.log("Login response: ", response),
-        error: (xhr, status, err) => {
-            console.error("Login failed:", status, err, xhr?.responseText);
-            alert("Login failed - see console for details");
-        },
-    });
-}
-
-function logoutRequest() {
-    $.ajax({
-        url: `${AUTH_URL}/logout`,
-        data: {},
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: "GET",
-        success: (response) => console.log("Login response: ", response),
-        error: (xhr, status, err) => {
-            console.error("Login failed:", status, err, xhr?.responseText);
-            alert("Login failed - see console for details");
+            alert("Failed to fetch auth state - see console for details");
         },
     });
 }
