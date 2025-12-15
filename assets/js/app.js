@@ -97,12 +97,6 @@ let dummyData = [
 
 $(function () {
     loadPosts();
-
-    $(".login").on("click", (window.location.href = LOGIN_URL));
-
-    $("#logout").on("click", (window.location.href = LOGOUT_URL));
-
-    $("#my-posts").on("click", (window.location.href = "user_posts.html"));
 });
 
 // Homepage Posts
@@ -122,6 +116,18 @@ function loadPosts() {
             ""
         )}</div>`
     );
+}
+
+function login() {
+    window.location.href = LOGIN_URL;
+}
+
+function logout() {
+    window.location.href = LOGOUT_URL;
+}
+
+function userPosts() {
+    window.location.href = "user_posts.html";
 }
 
 // Temporary for testing - To be modified to using Azure Cognitive Search
@@ -247,8 +253,8 @@ function setLoggedInUserButtons() {
     $navbar_buttons_container.empty();
     $navbar_buttons_container.html(
         `
-            <button id="my-posts" type="button" class="btn btn-primary col" style="width: 6rem;">My Posts</button>
-            <button id="logout" type="button" class="btn btn-warning col" style="width: 6rem;">Logout</button>
+            <button onclick="userPosts()" type="button" class="btn btn-primary col" style="width: 6rem;">My Posts</button>
+            <button onclick="logout()" type="button" class="btn btn-warning col" style="width: 6rem;">Logout</button>
         `
     );
 }
@@ -257,7 +263,7 @@ function setNonAuthButtons() {
     $navbar_buttons_container.empty();
     $navbar_buttons_container.html(
         `
-            <button type="button" class="login btn btn-warning col" style="width: 6rem;">Login</button>
+            <button onclick="login()" type="button" class="btn btn-warning col" style="width: 6rem;">Login</button>
         `
     );
 }
@@ -266,7 +272,7 @@ function setHeroRegisterFormButton() {
     $hero_register_form_button.empty();
     $hero_register_form_button.html(
         `
-            <button type="button" class="login btn btn-primary my-2">Login to share with the community</button>
+            <button onclick="login()" type="button" class="btn btn-primary my-2">Login to share with the community</button>
         `
     );
 }
@@ -279,22 +285,12 @@ function checkAuth() {
         processData: false,
         type: "GET",
         success: (response) => {
-            if (response) {
-                $hero_register_form_button.empty();
-                setLoggedInUserButtons();
-            } else {
-                setHeroRegisterFormButton();
-                setNonAuthButtons();
-            }
+            $hero_register_form_button.empty();
+            setLoggedInUserButtons();
         },
-        error: (xhr, status, err) => {
-            console.error(
-                "Failed to fetch auth state:",
-                status,
-                err,
-                xhr?.responseText
-            );
-            alert("Failed to fetch auth state - see console for details");
+        error: () => {
+            setHeroRegisterFormButton();
+            setNonAuthButtons();
         },
     });
 }
