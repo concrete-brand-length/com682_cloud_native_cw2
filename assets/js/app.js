@@ -98,8 +98,6 @@ const BLOB_STORAGE = "";
 
 $(function () {
     loadPosts();
-
-    $("#login").on("click", (window.location.href = "/.auth/login/Microsoft"));
 });
 
 // Homepage Posts
@@ -376,7 +374,7 @@ function setNonAuthButtons() {
     $navbar_buttons_container.empty();
     $navbar_buttons_container.html(
         `
-            <button id="login" type="button" class="btn btn-warning col" style="width: 6rem;" href>Login</button>
+            <button onclick="loginClick()" type="button" class="btn btn-warning col" style="width: 6rem;">Login</button>
             <button onclick="registerClick()" type="button" class="btn btn-primary bt col" style="width: 6rem;">Register</button>
         `
     );
