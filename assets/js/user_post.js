@@ -1,3 +1,6 @@
+const LOGOUT_URL =
+    "https://com682-assignment-web-app.azurewebsites.net/.auth/logout";
+
 // Temporary dummy data for testing - To be removed
 let dummyData = [
     {
@@ -98,8 +101,8 @@ $(function () {
     postId = sessionStorage.getItem("postId");
     loadUserPost();
 
-    // Logout
-    $("#logout-button").on("click", logoutClick);
+    /// Logout
+    $("#logout-button").on("click", (window.location.href = LOGOUT_URL));
 
     // View Posts
     $("#my-posts-button").on("click", () => {
@@ -155,13 +158,6 @@ function getPost(postId) {
         }
     }
     return fetchedPost;
-}
-
-// Logout
-function logoutClick() {
-    // logoutRequest();
-
-    window.location.href = "index.html";
 }
 
 // Post Management

@@ -284,7 +284,7 @@ function checkAuth() {
         contentType: false,
         processData: false,
         type: "GET",
-        success: (response) => {
+        success: () => {
             $hero_register_form_button.empty();
             setLoggedInUserButtons();
         },

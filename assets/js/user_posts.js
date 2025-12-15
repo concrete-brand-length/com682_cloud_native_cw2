@@ -1,3 +1,6 @@
+const LOGOUT_URL =
+    "https://com682-assignment-web-app.azurewebsites.net/.auth/logout";
+
 const $post_form_container = $("#post-form-container");
 
 // Temporary dummy data for testing - To be removed.
@@ -85,17 +88,11 @@ let dummyData = [
     },
 ];
 
-// Azure Endpoints
-const AUTH_URL = "";
-const EVENT_GRID = "";
-const POSTS_SERVICE = "";
-const BLOB_STORAGE = "";
-
 $(function () {
     loadUserPosts();
 
     // Logout
-    $("#logout-button").on("click", logoutClick);
+    $("#logout-button").on("click", (window.location.href = LOGOUT_URL));
 
     // Add Post Form
     $("#post-button").on("click", onPostClick);
@@ -134,13 +131,6 @@ function loadUserPosts() {
             ""
         )}</div>`
     );
-}
-
-// Logout
-function logoutClick() {
-    // logoutRequest();
-
-    window.location.href = "index.html";
 }
 
 // Add Post Form
