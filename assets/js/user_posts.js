@@ -120,6 +120,7 @@ $(function () {
 
 // Load user posts
 function loadUserPosts() {
+    window.location.hash = `/posts`;
     const $user_posts = $("#user-posts");
 
     // Temporary process for testing - To be removed.
@@ -144,6 +145,7 @@ function logoutClick() {
 
 // Add Post Form
 function onPostClick() {
+    window.location.hash = `/posts/create`;
     $("body").append(`<div id="overlay"></div>`);
     $post_form_container.html(
         `
@@ -193,6 +195,7 @@ function addPost() {
 }
 
 function closePostForm() {
+    window.location.hash = `/posts`;
     $("#overlay").remove();
     $post_form_container.empty();
 }
@@ -204,6 +207,11 @@ function viewPost() {
 }
 
 function deletePost(postId) {
+    window.location.hash = `/posts/post/${postId}/delete`;
+    const confirm = window.confirm(
+        "Are you sure you want to delete this post?"
+    );
+    window.location.hash = `/posts`;
     // deletePostRequest(postId);
 
     // Temporary Testing Logs - To be removed

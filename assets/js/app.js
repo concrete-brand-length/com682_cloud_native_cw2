@@ -102,6 +102,7 @@ $(function () {
 
 // Homepage Posts
 function loadPosts() {
+    window.location.hash = `/`;
     setNonAuthButtons();
     setHeroRegisterFormButton();
     const $homepage_posts = $("#homepage-posts");
@@ -126,6 +127,7 @@ function navigateToUserPosts() {
 
 // Login
 function loginClick() {
+    window.location.hash = `/login`;
     $("body").append(`<div id="overlay"></div>`);
     $forms_container.html(
         `
@@ -169,12 +171,14 @@ function login() {
 }
 
 function resetForms() {
+    window.location.hash = `/`;
     $("#overlay").remove();
     $forms_container.empty();
 }
 
 // Logout
 function logout() {
+    window.location.hash = `/`;
     // logoutRequest();
 
     setNonAuthButtons();
@@ -183,6 +187,7 @@ function logout() {
 
 // Registration
 function registerClick() {
+    window.location.hash = `/register`;
     $("body").append(`<div id="overlay"></div>`);
     $forms_container.html(
         `
@@ -238,11 +243,13 @@ function register() {
 
 // Temporary for testing - To be modified to using Azure Cognitive Search
 function onSearch(event) {
+    window.location.hash = `/search`;
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     alert(`Your searched for ${formData.get("search-bar")}`);
     form.reset();
+    window.location.hash = `/`;
 }
 
 // Helper Functions

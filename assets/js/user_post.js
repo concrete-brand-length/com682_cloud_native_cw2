@@ -137,6 +137,7 @@ $(function () {
 // User Posts
 function loadUserPost() {
     const postId = sessionStorage.getItem("postId");
+    window.location.hash = `posts/post/${postId}`;
     const $list = $("#view-post-form-container");
     const post = getPost(postId);
     const processedPosts = processPosts(post);
@@ -202,6 +203,9 @@ function addResource() {
 }
 
 function deleteResource(resourceId) {
+    window.location.hash = `posts/post/${postId}/${resourceId}/delete`;
+    window.confirm("Are you sure you want to delete this resource?");
+    window.location.hash = `posts/post/${postId}`;
     console.log(resourceId);
 
     // deleteResourceRequest(resourceId)
